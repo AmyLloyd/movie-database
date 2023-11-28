@@ -1,6 +1,9 @@
 //import express.js server
 const express = require('express');
 
+//import routes
+const api = require('./routes/index.js');
+
 //Import and require mysql2
 const mysql = require('mysql2');
 
