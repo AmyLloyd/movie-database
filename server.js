@@ -77,9 +77,10 @@ app.post('api/add-movie', (req, res) => {
 
 //PUT request to the /api/review/:id route updates a movie review.
 app.put('/api/review/:id', (req, res) => {
-    const sql = `UPDATE reviews.review SET review = "?" WHERE id = ?;`
+    const sql = `UPDATE reviews.review SET review = ? WHERE id = ?;`
+    const params = [req.body.review, req.params.id];
 
-    db.query(sql, (err, results) => {
+    db.query(sql, params, (err, results) => {
         if(err) {
             res.status(500).json({ error:err.message });
             return;
@@ -94,8 +95,9 @@ app.put('/api/review/:id', (req, res) => {
 //DELETE request to /api/movie/:id route deletes a movie when tested using Insomnia.
 app.delete('api/movie/:id', (req, res) => {
     const sql = 'DELETE FROM movies WHERE id = ?'
+    const params = [req.params.id]; 
 
-    db.query(sql, (err, results) => {
+    db.query(sql, params, (err, results) => {
         if(err) {
             res.status(500).json({ error:err.message });
             return;
