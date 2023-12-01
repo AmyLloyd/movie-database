@@ -1,3 +1,6 @@
+//import dotenv
+require('dotenv').config();
+
 //import express.js server
 const express = require('express');
 
@@ -19,10 +22,10 @@ const db = mysql.createConnection(
     {
         host: 'localhost',
         //Mysql username,
-        user: 'root',
+        user: process.env.DB_USER,
         //My SQL password 
-        password: '_pie083OUT()',
-        database: 'movies_db'
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
     },
     console.log(`Connected to the movie_database.`)
 );
